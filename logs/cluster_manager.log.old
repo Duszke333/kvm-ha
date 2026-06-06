@@ -1,0 +1,175 @@
+$ sudo python3 cluster_manager.py --min-vms 2 --max-vms 6
+
+2026-06-06 14:47:18,022 - === Starting Cluster Manager ===
+2026-06-06 14:47:18,038 - [HAPROXY] Started with 6 disabled worker slots
+2026-06-06 14:47:18,038 - [worker-1] Starting provisioning...
+2026-06-06 14:47:18,049 - [worker-1] Disk cloned in 0.011 seconds!
+2026-06-06 14:47:18,256 - [worker-1] Machine started. Awaiting IP address assignment...
+2026-06-06 14:47:27,260 - [worker-1] Done! Assigned IP address: 192.168.122.170
+2026-06-06 14:47:27,260 - [HAPROXY] Enabled worker-1 at 192.168.122.170:80
+2026-06-06 14:47:27,261 - [worker-2] Starting provisioning...
+2026-06-06 14:47:27,272 - [worker-2] Disk cloned in 0.011 seconds!
+2026-06-06 14:47:27,429 - [worker-2] Machine started. Awaiting IP address assignment...
+2026-06-06 14:47:37,433 - [worker-2] Done! Assigned IP address: 192.168.122.70
+2026-06-06 14:47:37,433 - [HAPROXY] Enabled worker-2 at 192.168.122.70:80
+2026-06-06 14:47:39,435 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1%, worker-2=0.1% | Active nodes: 2
+2026-06-06 14:47:46,437 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1%, worker-2=0.1% | Active nodes: 2
+2026-06-06 14:47:53,439 - [MONITORING] CPU avg=49.8% max=99.5% | worker-1=99.5%, worker-2=0.1% | Active nodes: 2
+2026-06-06 14:48:00,441 - [MONITORING] CPU avg=49.7% max=99.3% | worker-1=99.3%, worker-2=0.1% | Active nodes: 2
+2026-06-06 14:48:07,443 - [MONITORING] CPU avg=99.3% max=99.5% | worker-1=99.1%, worker-2=99.5% | Active nodes: 2
+2026-06-06 14:48:07,443 - [SCALE OUT] Surpassed 80.0%. Creating new machine...
+2026-06-06 14:48:07,443 - [worker-3] Starting provisioning...
+2026-06-06 14:48:07,467 - [worker-3] Disk cloned in 0.023 seconds!
+2026-06-06 14:48:07,646 - [worker-3] Machine started. Awaiting IP address assignment...
+2026-06-06 14:48:16,650 - [worker-3] Done! Assigned IP address: 192.168.122.149
+2026-06-06 14:48:16,650 - [HAPROXY] Enabled worker-3 at 192.168.122.149:80
+2026-06-06 14:48:24,653 - [MONITORING] CPU avg=99.2% max=99.5% | worker-1=99.5%, worker-2=98.9%, worker-3=99.1% | Active nodes: 3
+2026-06-06 14:48:32,655 - [MONITORING] CPU avg=99.2% max=99.5% | worker-1=99.5%, worker-2=98.9%, worker-3=99.3% | Active nodes: 3
+2026-06-06 14:48:40,657 - [MONITORING] CPU avg=99.4% max=99.6% | worker-1=99.4%, worker-2=99.3%, worker-3=99.6% | Active nodes: 3
+2026-06-06 14:48:48,659 - [MONITORING] CPU avg=99.3% max=99.6% | worker-1=99.4%, worker-2=98.9%, worker-3=99.6% | Active nodes: 3
+2026-06-06 14:48:48,659 - [SCALE OUT] Surpassed 80.0%. Creating new machine...
+2026-06-06 14:48:48,659 - [worker-4] Starting provisioning...
+2026-06-06 14:48:48,672 - [worker-4] Disk cloned in 0.012 seconds!
+2026-06-06 14:48:48,839 - [worker-4] Machine started. Awaiting IP address assignment...
+2026-06-06 14:48:58,843 - [worker-4] Done! Assigned IP address: 192.168.122.19
+2026-06-06 14:48:58,844 - [HAPROXY] Enabled worker-4 at 192.168.122.19:80
+2026-06-06 14:49:07,847 - [MONITORING] CPU avg=98.7% max=99.5% | worker-1=98.9%, worker-2=99.0%, worker-3=99.5%, worker-4=97.2% | Active nodes: 4
+2026-06-06 14:49:16,851 - [MONITORING] CPU avg=99.3% max=99.6% | worker-1=99.6%, worker-2=99.2%, worker-3=98.8%, worker-4=99.4% | Active nodes: 4
+2026-06-06 14:49:25,854 - [MONITORING] CPU avg=99.1% max=99.5% | worker-1=98.2%, worker-2=99.5%, worker-3=99.4%, worker-4=99.2% | Active nodes: 4
+2026-06-06 14:49:34,857 - [MONITORING] CPU avg=98.6% max=99.3% | worker-1=98.6%, worker-2=99.3%, worker-3=97.7%, worker-4=98.9% | Active nodes: 4
+2026-06-06 14:49:34,857 - [SCALE OUT] Surpassed 80.0%. Creating new machine...
+2026-06-06 14:49:34,857 - [worker-5] Starting provisioning...
+2026-06-06 14:49:34,868 - [worker-5] Disk cloned in 0.011 seconds!
+2026-06-06 14:49:35,058 - [worker-5] Machine started. Awaiting IP address assignment...
+2026-06-06 14:49:45,062 - [worker-5] Done! Assigned IP address: 192.168.122.250
+2026-06-06 14:49:45,062 - [HAPROXY] Enabled worker-5 at 192.168.122.250:80
+2026-06-06 14:49:55,066 - [MONITORING] CPU avg=99.1% max=99.6% | worker-1=99.6%, worker-2=98.8%, worker-3=99.5%, worker-4=99.2%, worker-5=98.6% | Active nodes: 5
+2026-06-06 14:50:05,070 - [MONITORING] CPU avg=99.4% max=99.6% | worker-1=99.5%, worker-2=99.6%, worker-3=99.2%, worker-4=99.3%, worker-5=99.5% | Active nodes: 5
+2026-06-06 14:50:15,074 - [MONITORING] CPU avg=99.4% max=99.7% | worker-1=99.3%, worker-2=99.7%, worker-3=99.4%, worker-4=99.3%, worker-5=99.4% | Active nodes: 5
+2026-06-06 14:50:15,074 - [SCALE OUT] Surpassed 80.0%. Creating new machine...
+2026-06-06 14:50:15,074 - [worker-6] Starting provisioning...
+2026-06-06 14:50:15,089 - [worker-6] Disk cloned in 0.015 seconds!
+2026-06-06 14:50:15,284 - [worker-6] Machine started. Awaiting IP address assignment...
+2026-06-06 14:50:24,288 - [worker-6] Done! Assigned IP address: 192.168.122.66
+2026-06-06 14:50:24,289 - [HAPROXY] Enabled worker-6 at 192.168.122.66:80
+2026-06-06 14:50:35,293 - [MONITORING] CPU avg=98.9% max=99.6% | worker-1=97.4%, worker-2=99.1%, worker-3=98.9%, worker-4=99.3%, worker-5=99.1%, worker-6=99.6% | Active nodes: 6
+2026-06-06 14:50:46,298 - [MONITORING] CPU avg=98.9% max=99.4% | worker-1=98.9%, worker-2=99.1%, worker-3=99.2%, worker-4=98.0%, worker-5=99.2%, worker-6=99.4% | Active nodes: 6
+2026-06-06 14:50:57,302 - [MONITORING] CPU avg=98.9% max=99.7% | worker-1=99.1%, worker-2=96.9%, worker-3=99.7%, worker-4=98.6%, worker-5=99.5%, worker-6=99.6% | Active nodes: 6
+2026-06-06 14:51:08,307 - [MONITORING] CPU avg=99.1% max=99.6% | worker-1=98.3%, worker-2=99.4%, worker-3=99.6%, worker-4=99.2%, worker-5=99.3%, worker-6=98.8% | Active nodes: 6
+2026-06-06 14:51:19,311 - [MONITORING] CPU avg=98.9% max=99.6% | worker-1=99.6%, worker-2=99.0%, worker-3=98.2%, worker-4=98.8%, worker-5=98.2%, worker-6=99.5% | Active nodes: 6
+2026-06-06 14:51:30,316 - [MONITORING] CPU avg=99.3% max=99.6% | worker-1=99.6%, worker-2=98.7%, worker-3=99.3%, worker-4=99.3%, worker-5=99.4%, worker-6=99.4% | Active nodes: 6
+2026-06-06 14:51:37,318 - [FAILURE] Machine worker-3 not responding! (State: 5)
+2026-06-06 14:51:40,320 - [worker-3] Starting VM decommission...
+2026-06-06 14:51:40,320 - [HAPROXY] Disabled worker-3
+2026-06-06 14:51:40,320 - [worker-3] Machine utilized.
+2026-06-06 14:51:40,321 - [worker-3] Starting provisioning...
+2026-06-06 14:51:40,330 - [worker-3] Disk cloned in 0.010 seconds!
+2026-06-06 14:51:40,533 - [worker-3] Machine started. Awaiting IP address assignment...
+2026-06-06 14:51:49,537 - [worker-3] Done! Assigned IP address: 192.168.122.125
+2026-06-06 14:51:49,537 - [HAPROXY] Enabled worker-3 at 192.168.122.125:80
+2026-06-06 14:51:49,537 - [MONITORING] CPU avg=82.5% max=99.6% | worker-1=99.2%, worker-2=99.0%, worker-4=98.4%, worker-5=99.6%, worker-6=98.6% | Active nodes: 6
+2026-06-06 14:52:00,542 - [MONITORING] CPU avg=82.6% max=99.6% | worker-1=99.6%, worker-2=98.7%, worker-4=98.8%, worker-5=98.6%, worker-6=99.5%, worker-3=0.2% | Active nodes: 6
+2026-06-06 14:52:11,546 - [MONITORING] CPU avg=82.9% max=99.6% | worker-1=99.6%, worker-2=99.4%, worker-4=99.5%, worker-5=99.2%, worker-6=99.6%, worker-3=0.2% | Active nodes: 6
+2026-06-06 14:52:22,550 - [MONITORING] CPU avg=99.0% max=99.5% | worker-1=99.5%, worker-2=99.5%, worker-4=99.1%, worker-5=98.9%, worker-6=99.5%, worker-3=97.5% | Active nodes: 6
+2026-06-06 14:52:33,555 - [MONITORING] CPU avg=99.3% max=99.6% | worker-1=99.6%, worker-2=99.4%, worker-4=98.9%, worker-5=99.5%, worker-6=98.9%, worker-3=99.5% | Active nodes: 6
+2026-06-06 14:52:44,559 - [MONITORING] CPU avg=99.2% max=99.6% | worker-1=98.6%, worker-2=99.2%, worker-4=99.4%, worker-5=99.5%, worker-6=98.8%, worker-3=99.6% | Active nodes: 6
+2026-06-06 14:52:55,564 - [MONITORING] CPU avg=99.1% max=99.6% | worker-1=99.5%, worker-2=99.3%, worker-4=99.6%, worker-5=99.4%, worker-6=99.5%, worker-3=97.5% | Active nodes: 6
+2026-06-06 14:53:00,564 - [FAILURE] Machine worker-1 not responding! (State: 5)
+2026-06-06 14:53:00,564 - [FAILURE] Machine worker-2 not responding! (State: 5)
+2026-06-06 14:53:04,568 - [worker-1] Starting VM decommission...
+2026-06-06 14:53:04,568 - [HAPROXY] Disabled worker-1
+2026-06-06 14:53:04,568 - [worker-1] Machine utilized.
+2026-06-06 14:53:04,568 - [worker-1] Starting provisioning...
+2026-06-06 14:53:04,583 - [worker-1] Disk cloned in 0.014 seconds!
+2026-06-06 14:53:04,760 - [worker-1] Machine started. Awaiting IP address assignment...
+2026-06-06 14:53:13,764 - [worker-1] Done! Assigned IP address: 192.168.122.171
+2026-06-06 14:53:13,765 - [HAPROXY] Enabled worker-1 at 192.168.122.171:80
+2026-06-06 14:53:13,765 - [worker-2] Starting VM decommission...
+2026-06-06 14:53:13,765 - [HAPROXY] Disabled worker-2
+2026-06-06 14:53:13,765 - [worker-2] Machine utilized.
+2026-06-06 14:53:13,765 - [worker-2] Starting provisioning...
+2026-06-06 14:53:13,781 - [worker-2] Disk cloned in 0.015 seconds!
+2026-06-06 14:53:13,977 - [worker-2] Machine started. Awaiting IP address assignment...
+2026-06-06 14:53:23,982 - [worker-2] Done! Assigned IP address: 192.168.122.203
+2026-06-06 14:53:23,982 - [HAPROXY] Enabled worker-2 at 192.168.122.203:80
+2026-06-06 14:53:23,982 - [MONITORING] CPU avg=66.3% max=99.6% | worker-4=99.6%, worker-5=99.4%, worker-6=99.2%, worker-3=99.4% | Active nodes: 6
+2026-06-06 14:53:34,987 - [MONITORING] CPU avg=66.3% max=99.6% | worker-4=99.5%, worker-5=99.6%, worker-6=98.8%, worker-3=99.5%, worker-1=0.1%, worker-2=0.1% | Active nodes: 6
+2026-06-06 14:53:45,992 - [MONITORING] CPU avg=99.2% max=99.6% | worker-4=99.0%, worker-5=99.5%, worker-6=99.4%, worker-3=99.6%, worker-1=98.9%, worker-2=99.1% | Active nodes: 6
+2026-06-06 14:53:56,996 - [MONITORING] CPU avg=99.2% max=99.6% | worker-4=98.4%, worker-5=99.1%, worker-6=99.1%, worker-3=99.6%, worker-1=99.1%, worker-2=99.6% | Active nodes: 6
+2026-06-06 14:54:08,001 - [MONITORING] CPU avg=98.9% max=99.5% | worker-4=99.5%, worker-5=98.5%, worker-6=97.7%, worker-3=99.0%, worker-1=99.2%, worker-2=99.5% | Active nodes: 6
+2026-06-06 14:54:19,005 - [MONITORING] CPU avg=99.2% max=99.6% | worker-4=98.9%, worker-5=98.9%, worker-6=99.3%, worker-3=99.1%, worker-1=99.6%, worker-2=99.5% | Active nodes: 6
+ab killed
+2026-06-06 14:54:30,010 - [MONITORING] CPU avg=99.2% max=99.5% | worker-4=99.1%, worker-5=99.5%, worker-6=99.1%, worker-3=99.1%, worker-1=98.9%, worker-2=99.4% | Active nodes: 6
+2026-06-06 14:54:41,014 - [MONITORING] CPU avg=99.4% max=99.7% | worker-4=98.7%, worker-5=99.6%, worker-6=99.4%, worker-3=99.4%, worker-1=99.7%, worker-2=99.6% | Active nodes: 6
+2026-06-06 14:54:52,018 - [MONITORING] CPU avg=99.4% max=99.6% | worker-4=99.3%, worker-5=99.3%, worker-6=99.5%, worker-3=99.4%, worker-1=99.1%, worker-2=99.6% | Active nodes: 6
+2026-06-06 14:55:03,023 - [MONITORING] CPU avg=99.0% max=99.7% | worker-4=99.5%, worker-5=99.4%, worker-6=98.3%, worker-3=99.7%, worker-1=98.4%, worker-2=98.9% | Active nodes: 6
+2026-06-06 14:55:14,027 - [MONITORING] CPU avg=99.4% max=99.7% | worker-4=99.6%, worker-5=99.4%, worker-6=99.3%, worker-3=99.5%, worker-1=99.7%, worker-2=99.1% | Active nodes: 6
+2026-06-06 14:55:25,031 - [MONITORING] CPU avg=99.3% max=99.7% | worker-4=99.7%, worker-5=99.4%, worker-6=99.4%, worker-3=99.1%, worker-1=99.4%, worker-2=99.0% | Active nodes: 6
+2026-06-06 14:55:36,036 - [MONITORING] CPU avg=99.3% max=99.5% | worker-4=99.5%, worker-5=99.4%, worker-6=99.1%, worker-3=99.5%, worker-1=99.5%, worker-2=98.9% | Active nodes: 6
+2026-06-06 14:55:47,040 - [MONITORING] CPU avg=99.4% max=99.6% | worker-4=99.1%, worker-5=99.6%, worker-6=99.0%, worker-3=99.6%, worker-1=99.3%, worker-2=99.5% | Active nodes: 6
+2026-06-06 14:55:58,044 - [MONITORING] CPU avg=99.4% max=99.6% | worker-4=99.5%, worker-5=99.4%, worker-6=99.6%, worker-3=99.5%, worker-1=98.9%, worker-2=99.2% | Active nodes: 6
+2026-06-06 14:56:09,059 - [MONITORING] CPU avg=99.4% max=99.6% | worker-4=99.5%, worker-5=99.5%, worker-6=99.2%, worker-3=99.2%, worker-1=99.6%, worker-2=99.4% | Active nodes: 6
+2026-06-06 14:56:20,063 - [MONITORING] CPU avg=99.2% max=99.5% | worker-4=98.6%, worker-5=99.5%, worker-6=99.4%, worker-3=98.7%, worker-1=99.3%, worker-2=99.3% | Active nodes: 6
+2026-06-06 14:56:22,927 - Stopping Cluster. Removing all machines...
+2026-06-06 14:56:22,927 - [worker-4] Starting VM decommission...
+2026-06-06 14:56:22,927 - [HAPROXY] Disabled worker-4
+2026-06-06 14:56:23,146 - [worker-4] Machine utilized.
+2026-06-06 14:56:23,146 - [worker-5] Starting VM decommission...
+2026-06-06 14:56:23,146 - [HAPROXY] Disabled worker-5
+2026-06-06 14:56:23,355 - [worker-5] Machine utilized.
+2026-06-06 14:56:23,355 - [worker-6] Starting VM decommission...
+2026-06-06 14:56:23,355 - [HAPROXY] Disabled worker-6
+2026-06-06 14:56:23,572 - [worker-6] Machine utilized.
+2026-06-06 14:56:23,572 - [worker-3] Starting VM decommission...
+2026-06-06 14:56:23,573 - [HAPROXY] Disabled worker-3
+2026-06-06 14:56:23,791 - [worker-3] Machine utilized.
+2026-06-06 14:56:23,791 - [worker-1] Starting VM decommission...
+2026-06-06 14:56:23,791 - [HAPROXY] Disabled worker-1
+2026-06-06 14:56:24,010 - [worker-1] Machine utilized.
+2026-06-06 14:56:24,010 - [worker-2] Starting VM decommission...
+2026-06-06 14:56:24,010 - [HAPROXY] Disabled worker-2
+2026-06-06 14:56:24,230 - [worker-2] Machine utilized.
+
+$ sudo python3 cluster_manager.py
+
+2026-06-06 14:57:37,735 - === Starting Cluster Manager ===
+2026-06-06 14:57:37,751 - [HAPROXY] Started with 4 disabled worker slots
+2026-06-06 14:57:37,751 - [worker-1] Starting provisioning...
+2026-06-06 14:57:37,765 - [worker-1] Disk cloned in 0.014 seconds!
+2026-06-06 14:57:37,934 - [worker-1] Machine started. Awaiting IP address assignment...
+2026-06-06 14:57:47,948 - [worker-1] Done! Assigned IP address: 192.168.122.242
+2026-06-06 14:57:47,949 - [HAPROXY] Enabled worker-1 at 192.168.122.242:80
+2026-06-06 14:57:48,950 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:57:54,951 - [MONITORING] CPU avg=6.3% max=6.3% | worker-1=6.3% | Active nodes: 1
+2026-06-06 14:58:00,952 - [MONITORING] CPU avg=99.4% max=99.4% | worker-1=99.4% | Active nodes: 1
+2026-06-06 14:58:06,953 - [MONITORING] CPU avg=99.4% max=99.4% | worker-1=99.4% | Active nodes: 1
+2026-06-06 14:58:12,955 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:58:18,956 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:58:24,957 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:58:30,958 - [MONITORING] CPU avg=99.4% max=99.4% | worker-1=99.4% | Active nodes: 1
+2026-06-06 14:58:30,959 - [SCALE OUT] Surpassed 80.0% for 30.00 seconds. Creating new machine...
+2026-06-06 14:58:30,959 - [worker-2] Starting provisioning...
+2026-06-06 14:58:30,976 - [worker-2] Disk cloned in 0.017 seconds!
+2026-06-06 14:58:31,159 - [worker-2] Machine started. Awaiting IP address assignment...
+2026-06-06 14:58:40,163 - [worker-2] Done! Assigned IP address: 192.168.122.12
+2026-06-06 14:58:40,163 - [HAPROXY] Enabled worker-2 at 192.168.122.12:80
+2026-06-06 14:58:47,165 - [MONITORING] CPU avg=99.3% max=99.4% | worker-1=99.2%, worker-2=99.4% | Active nodes: 2
+2026-06-06 14:58:54,168 - [MONITORING] CPU avg=99.5% max=99.6% | worker-1=99.5%, worker-2=99.6% | Active nodes: 2
+2026-06-06 14:59:01,170 - [MONITORING] CPU avg=99.4% max=99.5% | worker-1=99.5%, worker-2=99.4% | Active nodes: 2
+2026-06-06 14:59:08,171 - [MONITORING] CPU avg=73.4% max=99.5% | worker-1=99.5%, worker-2=47.3% | Active nodes: 2
+2026-06-06 14:59:15,173 - [MONITORING] CPU avg=0.2% max=0.2% | worker-1=0.2%, worker-2=0.2% | Active nodes: 2
+2026-06-06 14:59:15,173 - [SCALE IN] Fell below 20.0%. Removing redundant machine...
+2026-06-06 14:59:15,173 - [worker-2] Starting VM decommission...
+2026-06-06 14:59:15,174 - [HAPROXY] Disabled worker-2
+2026-06-06 14:59:15,382 - [worker-2] Machine utilized.
+2026-06-06 14:59:21,384 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:27,385 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:33,386 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:39,387 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:45,388 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:51,390 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 14:59:57,391 - [MONITORING] CPU avg=0.1% max=0.1% | worker-1=0.1% | Active nodes: 1
+2026-06-06 15:00:01,788 - Stopping Cluster. Removing all machines...
+2026-06-06 15:00:01,788 - [worker-1] Starting VM decommission...
+2026-06-06 15:00:01,788 - [HAPROXY] Disabled worker-1
+2026-06-06 15:00:02,007 - [worker-1] Machine utilized.

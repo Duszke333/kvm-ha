@@ -29,6 +29,7 @@ DEFAULT_TIME_TO_SCALE = 30  # [seconds]
 DEFAULT_TIME_INTERVAL = 5  # [seconds]
 DEFAULT_HAPROXY_SERVER_MAXCONN = 1
 DEFAULT_HAPROXY_SERVER_MAXQUEUE = 1
+DEFAULT_HAPROXY_QUEUE_TIMEOUT_MS = 60000
 
 
 @dataclass
@@ -50,6 +51,7 @@ class ClusterManagerConfig:
     time_interval: int
     haproxy_server_maxconn: int
     haproxy_server_maxqueue: int
+    haproxy_queue_timeout_ms: int
 
 
 class ClusterManager:
@@ -62,6 +64,9 @@ class ClusterManager:
             exit(1)
         self.active_vms = {}  # {vm_name: ip_address}
         self.last_action_time = time.time()
+        self.last_probe = time.time()
+        self.high_usage_acc = 0
+        self.low_usage_acc = 0
 
     def get_cpu_usage(self, domain):
         """Calculates % of CPU usage for given machine via libvirt API"""
@@ -141,6 +146,8 @@ class ClusterManager:
         self.enable_haproxy_server(vm_name, ip_address)
         self.active_vms[vm_name] = ip_address
         self.last_action_time = time.time()
+        self.high_usage_acc = 0
+        self.low_usage_acc = 0
 
     def _wait_for_ip(self, mac_address):
         """Listens to DHCP leases in libvirt to find the IP of the new machine"""
@@ -173,6 +180,8 @@ class ClusterManager:
 
         logging.info(f"[{vm_name}] Machine utilized.")
         self.last_action_time = time.time()
+        self.high_usage_acc = 0
+        self.low_usage_acc = 0
 
     def _send_haproxy_command(self, command):
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
@@ -209,7 +218,7 @@ class ClusterManager:
             "\nbackend web_workers\n"
             "    balance leastconn\n"
             "    option redispatch\n"
-            "    timeout queue 1000000ms\n"
+            f"    timeout queue {self.config.haproxy_queue_timeout_ms}ms\n"
         )
         for vm_index in range(1, self.config.max_vms + 1):
             cfg += (
@@ -289,16 +298,28 @@ class ClusterManager:
                         f"[MONITORING] CPU avg={avg_cpu:.1f}% max={max_cpu:.1f}% | {per_vm_cpu} | Active nodes: {active_count}"
                     )
 
-                    if (
-                        time.time() - self.last_action_time
-                    ) > self.config.time_to_scale:
+                    now = time.time()
+                    elapsed = now - self.last_probe
+                    self.high_usage_acc = (
+                        self.high_usage_acc + elapsed
+                        if avg_cpu >= self.config.cpu_high_threshold
+                        else 0
+                    )
+                    self.low_usage_acc = (
+                        self.low_usage_acc + elapsed
+                        if avg_cpu <= self.config.cpu_low_threshold
+                        else 0
+                    )
+
+                    cooldown_elapsed = now - self.last_action_time
+                    if cooldown_elapsed > self.config.time_to_scale:
                         # Scale OUT
                         if (
-                            avg_cpu > self.config.cpu_high_threshold
+                            self.high_usage_acc >= self.config.time_to_scale
                             and active_count < self.config.max_vms
                         ):
                             logging.info(
-                                f"[SCALE OUT] Surpassed {self.config.cpu_high_threshold}% for {self.config.time_to_scale:.2f} seconds. Creating new machine..."
+                                f"[SCALE OUT] Surpassed {self.config.cpu_high_threshold}% for {self.high_usage_acc:.2f} seconds. Creating new machine..."
                             )
                             # Look for free index
                             new_idx = (
@@ -314,16 +335,18 @@ class ClusterManager:
 
                         # Scale IN
                         elif (
-                            avg_cpu < self.config.cpu_low_threshold
+                            self.low_usage_acc >= self.config.time_to_scale
                             and active_count > self.config.min_vms
                         ):
                             logging.info(
-                                f"[SCALE IN] Fell below {self.config.cpu_low_threshold}%. Removing redundant machine..."
+                                f"[SCALE IN] Fell below {self.config.cpu_low_threshold}% for {self.low_usage_acc:.2f} seconds. Removing redundant machine..."
                             )
                             vm_to_remove = list(self.active_vms.keys())[
                                 -1
                             ]  # Remove the newest
                             self.destroy_vm(vm_to_remove)
+
+                    self.last_probe = now
 
                 time.sleep(self.config.time_interval)
 
@@ -428,6 +451,12 @@ def parse_arguments() -> ClusterManagerConfig:
         type=int,
         default=DEFAULT_HAPROXY_SERVER_MAXQUEUE,
         help="Maximum queued HAProxy connections kept on each worker slot",
+    )
+    parser.add_argument(
+        "--haproxy-queue-timeout-ms",
+        type=int,
+        default=DEFAULT_HAPROXY_QUEUE_TIMEOUT_MS,
+        help="Maximum time in milliseconds a request may wait in HAProxy's queue before a worker slot is available",
     )
 
     args = parser.parse_args()
