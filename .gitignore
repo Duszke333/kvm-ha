@@ -1,5 +1,4 @@
 /images
-/logs
 /haproxy/haproxy.pid
 /haproxy/haproxy.cfg
 **/__pycache__/
