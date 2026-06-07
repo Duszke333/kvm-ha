@@ -1,5 +1,7 @@
 <domain type='kvm'>
-  <name>alpine-base</name>
+  <!-- replaced in cluster_manager.py -->
+  <name>xxxxxxxx</name>
+  <!-- replaced in cluster_manager.py -->
   <uuid>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
@@ -34,6 +36,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
+      <!-- replaced in cluster_manager.py -->
       <source file='/path/to/alpine-base.qcow2'/>
       <target dev='vda' bus='virtio'/>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
@@ -125,6 +128,7 @@
       <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
     </controller>
     <interface type='network'>
+      <!-- replaced in cluster_manager.py -->
       <mac address='52:54:00:xx:xx:xx'/>
       <source network='default'/>
       <model type='virtio'/>

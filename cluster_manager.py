@@ -349,7 +349,12 @@ class ClusterManager:
                     self.last_probe = now
 
                 # interval - number of active machines because we take 1 second to probe CPU for each one
-                time.sleep(max(0, self.config.time_interval - list(self.active_vms.keys()).size()))
+                time.sleep(
+                    max(
+                        0,
+                        self.config.time_interval - list(self.active_vms.keys()).size(),
+                    )
+                )
 
             except KeyboardInterrupt:
                 logging.info("Stopping Cluster. Removing all machines...")
@@ -362,7 +367,12 @@ class ClusterManager:
 
 def parse_arguments() -> ClusterManagerConfig:
     parser = argparse.ArgumentParser(
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description="Python3 script for autoscaling virtual machines (workers). "
+        "Scaling (out/in) events occur on persistent high/low cpu usage. Traffic is balanced between workers using HAproxy. "
+        "Needs KVM virtualizator installed on host with sufficient vCPUs and RAM. "
+        'Worker base image is expected to have a web server listening on port 8080 with a "GET /" endpoint; see server.py for an example. '
+        "Most capabilities (worker image, HAproxy config, scaling parameters, etc.) can be configured using the options below:",
     )
     parser.add_argument(
         "--base-image", default=DEFAULT_BASE_IMAGE, help="Base worker QCOW2 disk image"
@@ -396,6 +406,24 @@ def parse_arguments() -> ClusterManagerConfig:
         "--haproxy-stats-socket",
         default=DEFAULT_HAPROXY_STATS_SOCKET,
         help="HAProxy Runtime API socket path",
+    )
+    parser.add_argument(
+        "--haproxy-server-maxconn",
+        type=int,
+        default=DEFAULT_HAPROXY_SERVER_MAXCONN,
+        help="Maximum concurrent HAProxy connections sent to each worker slot",
+    )
+    parser.add_argument(
+        "--haproxy-server-maxqueue",
+        type=int,
+        default=DEFAULT_HAPROXY_SERVER_MAXQUEUE,
+        help="Maximum queued HAProxy connections kept on each worker slot",
+    )
+    parser.add_argument(
+        "--haproxy-queue-timeout-ms",
+        type=int,
+        default=DEFAULT_HAPROXY_QUEUE_TIMEOUT_MS,
+        help="Maximum time in milliseconds a request may wait in HAProxy's queue before a worker slot is available",
     )
     parser.add_argument(
         "--network-name",
@@ -440,24 +468,6 @@ def parse_arguments() -> ClusterManagerConfig:
         type=int,
         default=DEFAULT_TIME_INTERVAL,
         help="Time interval in seconds between cluster monitoring checks",
-    )
-    parser.add_argument(
-        "--haproxy-server-maxconn",
-        type=int,
-        default=DEFAULT_HAPROXY_SERVER_MAXCONN,
-        help="Maximum concurrent HAProxy connections sent to each worker slot",
-    )
-    parser.add_argument(
-        "--haproxy-server-maxqueue",
-        type=int,
-        default=DEFAULT_HAPROXY_SERVER_MAXQUEUE,
-        help="Maximum queued HAProxy connections kept on each worker slot",
-    )
-    parser.add_argument(
-        "--haproxy-queue-timeout-ms",
-        type=int,
-        default=DEFAULT_HAPROXY_QUEUE_TIMEOUT_MS,
-        help="Maximum time in milliseconds a request may wait in HAProxy's queue before a worker slot is available",
     )
 
     args = parser.parse_args()
