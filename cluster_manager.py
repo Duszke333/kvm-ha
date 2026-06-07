@@ -352,7 +352,7 @@ class ClusterManager:
                 time.sleep(
                     max(
                         0,
-                        self.config.time_interval - list(self.active_vms.keys()).size(),
+                        self.config.time_interval - len(list(self.active_vms.keys())),
                     )
                 )
 
@@ -476,6 +476,8 @@ def parse_arguments() -> ClusterManagerConfig:
 
 def main():
     config = parse_arguments()
+
+    os.makedirs(os.path.dirname(config.log_file), exist_ok=True)
 
     logging.basicConfig(
         level=logging.INFO,
