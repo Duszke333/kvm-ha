@@ -348,7 +348,8 @@ class ClusterManager:
 
                     self.last_probe = now
 
-                time.sleep(self.config.time_interval)
+                # interval - number of active machines because we take 1 second to probe CPU for each one
+                time.sleep(max(0, self.config.time_interval - list(self.active_vms.keys()).size()))
 
             except KeyboardInterrupt:
                 logging.info("Stopping Cluster. Removing all machines...")
